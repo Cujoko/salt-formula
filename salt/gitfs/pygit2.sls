@@ -26,7 +26,7 @@ pygit-deps:
       - cmake
       - libffi-dev
       - libssh-dev
-#      - libssh2-1-dev
+      - libssh2-1-dev
       - pkg-config
       - python-dev
       - python-pip
