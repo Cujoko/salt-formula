@@ -34,7 +34,7 @@
 
 {## Start with  defaults from defaults.yaml ##}
 {% import_yaml "salt/defaults.yaml" as default_settings %}
-{%- do salt.log.error("OS_FAMILY_MAP.SALT # 1") -%}
+{%- do salt.log.error("DEFAULT_SETTINGS.SALT # 1") -%}
 {%- do salt.log.error(default_settings.salt) -%}
 
 {##
@@ -217,8 +217,8 @@ that differ from whats in defaults.yaml
 {%- do salt.log.error(os_family_map) -%}
 
 {## Merge the flavor_map to the default settings ##}
-{% do deep_merge(default_settings.salt,os_family_map) %}
-{%- do salt.log.error("OS_FAMILY_MAP.SALT # 2") -%}
+{% do deep_merge(default_settings.salt, os_family_map) %}
+{%- do salt.log.error("DEFAULT_SETTINGS.SALT # 2") -%}
 {%- do salt.log.error(default_settings.salt) -%}
 
 {## Merge in salt:lookup pillar ##}
@@ -227,5 +227,5 @@ that differ from whats in defaults.yaml
     default=default_settings.salt,
     merge=True)
 %}
-{%- do salt.log.error("OS_FAMILY_MAP.SALT # 3") -%}
-{%- do salt.log.error(default_settings.salt) -%}
+{%- do salt.log.error("SALT_SETTINGS") -%}
+{%- do salt.log.error(salt_settings) -%}
