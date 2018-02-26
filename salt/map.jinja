@@ -216,7 +216,7 @@ that differ from whats in defaults.yaml
 {% if salt['grains.get']('os') != 'Ubuntu' %}
 {% do deep_merge(default_settings.salt, os_family_map) %}
 {% else %}
-{% salt['slsutil.merge'](default_settings.salt, os_family_map) %}
+{% do salt['slsutil.merge'](default_settings.salt, os_family_map) %}
 {% endif %}
 
 {## Merge in salt:lookup pillar ##}
