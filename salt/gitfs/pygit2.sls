@@ -38,7 +38,7 @@ dl-libgit2-src:
     - source_hash: md5={{ libgit2_settings.download_hash }}
     - archive_format: tar
     - keep: True
-    - if_missing: /usr/src/libgit2-{{ libgit2_settings.version }}
+    - if_missing: {{ libgit2_src_dir }}
 
 {{ libgit2_build_dir }}:
   file.directory
