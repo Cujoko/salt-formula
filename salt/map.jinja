@@ -34,8 +34,6 @@
 
 {## Start with  defaults from defaults.yaml ##}
 {% import_yaml "salt/defaults.yaml" as default_settings %}
-{%- do salt.log.error("DEFAULT_SETTINGS.SALT # 1") -%}
-{%- do salt.log.error(default_settings.salt) -%}
 
 {##
 Setup variable using grains['os_family'] based logic, only add key:values here
@@ -213,13 +211,13 @@ that differ from whats in defaults.yaml
     }
   }, grain='os', merge=salt['pillar.get']('salt:lookup')))
 %}
-{%- do salt.log.error("OS_FAMILY_MAP") -%}
-{%- do salt.log.error(os_family_map) -%}
 
 {## Merge the flavor_map to the default settings ##}
+{% if salt['grains.get']('os') != 'Ubuntu' %}
 {% do deep_merge(default_settings.salt, os_family_map) %}
-{%- do salt.log.error("DEFAULT_SETTINGS.SALT # 2") -%}
-{%- do salt.log.error(default_settings.salt) -%}
+{% else %}
+{% salt['slsutil.merge'](default_settings.salt, os_family_map) %}
+{% endif %}
 
 {## Merge in salt:lookup pillar ##}
 {% set salt_settings = salt['pillar.get'](
@@ -227,5 +225,3 @@ that differ from whats in defaults.yaml
     default=default_settings.salt,
     merge=True)
 %}
-{%- do salt.log.error("SALT_SETTINGS") -%}
-{%- do salt.log.error(salt_settings) -%}
