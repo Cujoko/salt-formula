@@ -23,13 +23,13 @@ pygit-deps:
   pkg.installed:
     - pkgs:
       - build-essential
+      - cmake
+      - libffi-dev
+      - libssh-dev
+      - libssh2-1-dev
       - pkg-config
       - python-dev
-      - libssh-dev
-      - libffi-dev
-      - cmake
       - python-pip
-      - libssh2-1-dev
 
 dl-libgit2-src:
   archive.extracted:
