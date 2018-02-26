@@ -1,5 +1,6 @@
 {% from "salt/map.jinja" import salt_settings with context %}
 {% set pygit2_settings = salt_settings.gitfs.pygit2 %}
+{%- do salt.log.error(pygit2_settings) -%}
 
 {% if pygit2_settings.git.get('require_state', False) %}
 include:
@@ -14,7 +15,6 @@ pygit2-git:
 {% set libgit2_settings = pygit2_settings.libgit2 %}
 
 {% if libgit2_settings.install_from_source %}
-{%- do salt.log.error(libgit2_settings) -%}
 {% set libgit2_src_dir = libgit2_settings.build_parent_dir + 'libgit2-' + libgit2_settings.version %}
 {% set libgit2_build_dir = libgit2_src_dir + '/_build' %}
 
