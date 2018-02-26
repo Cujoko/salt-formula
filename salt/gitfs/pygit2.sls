@@ -29,7 +29,7 @@ pygit-deps:
       - libffi-dev
       - cmake
       - python-pip
-      - libz-dev
+      - libssh2-1-dev
 
 dl-libgit2-src:
   archive.extracted:
