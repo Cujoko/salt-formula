@@ -222,9 +222,16 @@ that differ from whats in defaults.yaml
 {% do salt['slsutil.merge'](default_settings.salt, os_family_map) %}
 {% endif %}
 
-{## Merge in salt:lookup pillar ##}
+{## Merge in salt pillar ##}
 {% set salt_settings = salt['pillar.get'](
     'salt',
     default=default_settings.salt,
+    merge=True)
+%}
+
+{## Merge in salt_formulas pillar ##}
+{% set formulas_settings = salt['pillar.get'](
+    'salt_formulas',
+    default=default_settings.salt_formulas,
     merge=True)
 %}
